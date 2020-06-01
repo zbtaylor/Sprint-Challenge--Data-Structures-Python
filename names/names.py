@@ -1,4 +1,5 @@
 import time
+from bst import BSTNode
 
 start_time = time.time()
 
@@ -18,22 +19,14 @@ duplicates = []  # Return the list of duplicates in this data structure
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
 
+tree = BSTNode()
 
-def includes(list, name):
-    half = round(len(list) / 2)
-    if name == list[half]:
-        duplicates.append(name)
-    elif name < list[half]:
-        return includes(list[:half], name)
-    elif name > list[half]:
-        return includes(list[half:], name)
-    else:
-        return False
+for n in names_1:
+    tree.insert(n)
 
-
-for name in names_1:
-    includes(names_2, name)
-
+for n in names_2:
+    if tree.contains(n):
+        duplicates.append(n)
 
 end_time = time.time()
 print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
